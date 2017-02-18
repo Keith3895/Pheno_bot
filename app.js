@@ -1,5 +1,4 @@
 var builder = require('botbuilder');
-var CRMWebAPI = require('CRMWebAPI');
 var express = require("express");
 var app     = express();
 var converRoute = require("./routes/conv")
