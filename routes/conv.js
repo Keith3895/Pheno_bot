@@ -32,7 +32,13 @@ var Profile         =           require('../dialog/profile');
 bot.dialog('profile',Profile.Dialog);
 
 intents.onDefault([function(session){
-    session.beginDialog('profile');
+	if(!session.userData.name)
+    	session.beginDialog('profile');
+    else
+    	session.send("hey");
+},
+function(session,args){
+	console.log(session.userData.name  +"  "+ args.response);
 }]);
 
 
