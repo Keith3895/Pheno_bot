@@ -4,7 +4,7 @@ profile = {
 	Label	: 	'Profile',
 	Dialog	: 	[
 		function(session,args,next){
-			if(session.userData.name==undefined){
+			if(session.userData.name==undefined || !session.userData.name){
 				session.send('hi lets get to know each other... ');
 				builder.Prompts.text(session,'so what\'s your name?');
 			}
