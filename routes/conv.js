@@ -11,7 +11,7 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD || 'AoRqywNmbqMMvKPM5GxphYG'
  });
 var bot = new builder.UniversalBot(connector);
-var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/f7e538c8-c1aa-474f-a135-223303bf83ae?subscription-key=473378f051924e268711aae581e38f24';
+var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/f7e538c8-c1aa-474f-a135-223303bf83ae?subscription-key=e1c57927de8240149a148206f5050cc4';
 var recognizer = new builder.LuisRecognizer(model);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', intents);
@@ -31,16 +31,29 @@ var Profile         =           require('../dialog/profile');
 
 bot.dialog('profile',Profile.Dialog);
 
-intents.onDefault([function(session){
+intents.onDefault([function(session,args,next){
 	if(!session.userData.name)
     	session.beginDialog('profile');
     else
-    	session.send("hey");
+    	next();
 },
-function(session,args){
-	console.log(session.userData.name  +"  "+ args.response);
-}]);
-
+function(session,args,next){
+	builder.
+	Prompts.choice(
+		session,
+		"hi "+session.userData.name+" we provide 2 main funtions on FeastMaMu",
+		["event service provider","event planner"],
+        {
+            maxRetries: 3,
+            retryPrompt: 'Not a valid option'
+        });
+},
+function(session,results){
+	
+	session.send("%s",results.response.entity);
+	session.send("thanks for that choice");
+}
+]);
 
 router.post("/",connector.listen());
 

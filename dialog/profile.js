@@ -21,8 +21,7 @@ profile = {
 		},
 		function(session,results){
 			session.userData.age = results.response;
-			session.send('hi  %s how are you? ',session.userData.name);
-			session.endDialog();
+			session.endDialog();	
 		}
 	]
 };
