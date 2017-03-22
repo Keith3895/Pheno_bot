@@ -1,6 +1,6 @@
 var builder 		=		require('botbuilder');
 var User 			=		require('../models/user');
-var bigJump=false;
+var bigJump;
 var numExtract  =  function(str){
 	var ch,str1="";
 	for(i=0;i<str.length;i++){
@@ -23,8 +23,6 @@ profile = {
 			}
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if(!session.userData.name){
 				session.send("Before we start...");
 				// session.send('So let us get to know each other before starting');
@@ -36,8 +34,6 @@ profile = {
 			}
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if(args.response){
 				if(/my name is/i.test(args.response))
 				{
@@ -76,8 +72,6 @@ profile = {
 				next();
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			// console.log(args.response.entity);
 			if(args.response){
 				if(args.response.entity == 'yes'){
@@ -99,8 +93,6 @@ profile = {
 			}
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if (!session.userData.phone) {
 				builder.Prompts.text(session,"If you dont mind, may I have your phone number to contact you with updates?");
 			}
@@ -108,8 +100,6 @@ profile = {
 				next();
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if (args.response) {
 				res = args.response;	
 				if(res.match(/[0-9]+/)){
@@ -127,8 +117,6 @@ profile = {
 				next();
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if(args.response){
 				console.log("here");
 				session.userData.phone=args.response;
@@ -142,8 +130,6 @@ profile = {
 			}
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if (args.response) {
 				session.userData.age = args.response;
 			}
@@ -153,8 +139,6 @@ profile = {
 				next();
 		},
 		function(session,args,next){
-			if(bigJump)
-				next();
 			if(args.response){
 				session.userData.email = args.response;
 			}
