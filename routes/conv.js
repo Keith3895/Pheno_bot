@@ -1,7 +1,8 @@
 var express         =           require("express");
 var router          =           express.Router();
 var builder         =           require('botbuilder');
-
+var mongoose 		= 			require('mongoose');
+var User 			= 			require('../models/user');
 
 //=========================================================
 // Bot Setup
@@ -24,38 +25,45 @@ bot.dialog('/', intents);
 // external dialog
 // ======================
 var Profile         =           require('../dialog/profile');
-
+var Greet			= 			require('../dialog/greet');
 
 // =======================
 
 
-bot.dialog('profile',Profile.Dialog);
 
-intents.onDefault([function(session,args,next){
-	if(!session.userData.name)
-    	session.beginDialog('profile');
-    else
-    	next();
-},
-function(session,args,next){
-	builder.
-	Prompts.choice(
-		session,
-		"hi "+session.userData.name+" we provide 2 main funtions on FeastMaMu",
-		["event service provider","event planner"],
-        {
-            maxRetries: 3,
-            retryPrompt: 'Not a valid option'
-        });
-},
-function(session,results){
-	
-	session.send("%s",results.response.entity);
-	session.send("thanks for that choice");
-}
-]);
+
+
+bot.dialog('profile',Profile.Dialog);
+bot.dialog('greet',Greet.Dialog);
+
+intents.onBegin(function(session){
+	session.beginDialog('greet',session.userData.greet);
+});
 
 router.post("/",connector.listen());
 
 module.exports = router;
 
+// intents.onDefault([function(session,args,next){
+// 	if(!session.userData.name)
+//     	session.beginDialog('profile');
+//     else
+//     	next();
+// }
+// function(session,args,next){
+// 	builder.
+// 	Prompts.choice(
+// 		session,
+// 		"hi "+session.userData.name+" we provide 2 main funtions on FeastMaMu",
+// 		["event service provider","event planner"],
+//         {
+//             maxRetries: 3,
+//             retryPrompt: 'Not a valid option'
+//         });
+// },
+// function(session,results){
+	
+// 	session.send("%s",results.response.entity);
+// 	session.send("thanks for that choice");
+// }
+// ]);
