@@ -24,7 +24,7 @@ artist = {
 	Dialog	: 	[
 	function(session,args,next){
 		var ArtistPhrase = builder.EntityRecognizer.findEntity(args.entities, 'ArtistPhrase');
-	    console.log(dataRecieved);
+	    // console.log(dataRecieved);
 	    if (!ArtistPhrase) {
 	    	var list=[];
 	    	for(i in dataRecieved){
@@ -44,8 +44,9 @@ artist = {
 		var find = true;
 		if(args.phrase){
 			ArtistPhrase = args.phrase;
+			var regex = new RegExp(ArtistPhrase,"i");
 			for(i in dataRecieved){
-				if(ArtistPhrase.includes(dataRecieved[i].StageName)){
+				if(regex.test(dataRecieved[i].StageName)){
 					// if(returned[0].includes(dataRecieved[i].Type)){
 						var msg = new builder.Message(session)
 		                    .attachments([ 
@@ -60,14 +61,16 @@ artist = {
 					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/artist/'+dataRecieved[i].Type.toLowerCase()+'/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
-				        session.send(msg);			
+				        session.send(msg);	
+				        find=true;
+				        break;		
 				    }
 				else{
 					find = false;
 				}
 			}
 			if(!find)
-					session.session("coundn't find the artist you're looking for.");	
+					session.send("coundn't find the artist you're looking for.");	
 		}else if(args.response){
 			returned = args.response.entity;
 			returned = returned.split(':');

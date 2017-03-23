@@ -27,25 +27,27 @@ bot.dialog('/', intents);
 var Profile         =           require('../dialog/profile');
 var Greet			= 			require('../dialog/greet');
 var Artist			= 			require('../dialog/artist');
+var Stage 			=			require('../dialog/stage');
+var Search 			= 			require('../dialog/search');
 // =======================
-
-
-
 
 
 bot.dialog('profile',Profile.Dialog);
 bot.dialog('greet',Greet.Dialog);
 bot.dialog('artist',Artist.Dialog);
+bot.dialog('stage',Stage.Dialog);
+bot.dialog('search',Search.Dialog);
+
+// =======================
+
+
 intents.onBegin(function(session){
 	session.beginDialog('greet',session.userData.greet);
+	session.send("You can ask anything regarding the services you need.");
 });
 intents.matches('Artist',Artist.Dialog);
-intents.matches('Search',function(session,args){
-	session.send("still working on it.");
-});
-intents.matches('Stage',function(session,args){
-	session.send("still working on it.");
-});
+intents.matches('Search',Search.Dialog);
+intents.matches('Stage',Stage.Dialog);
 
 
 
