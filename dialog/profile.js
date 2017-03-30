@@ -122,7 +122,6 @@ profile = {
 				session.userData.phone=args.response;
 			}
 			if (!session.userData.age) {
-				session.send("age:%s",session.userData.age);
 				builder.Prompts.text(session,"age?");
 			}
 			else{
