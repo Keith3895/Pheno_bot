@@ -12,7 +12,7 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD || 'AoRqywNmbqMMvKPM5GxphYG'
  });
 var bot = new builder.UniversalBot(connector);
-var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key=be85e120c3054989a8a6654c1f25b36c&timezoneOffset=0.0&verbose=true&q=';
+var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key=ed2d37b304e948ca97cdcb590a71d2e1&timezoneOffset=0&verbose=true&q=';
 var recognizer = new builder.LuisRecognizer(model);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', intents);
@@ -29,6 +29,7 @@ var Greet			= 			require('../dialog/greet');
 var Artist			= 			require('../dialog/artist');
 var Stage 			=			require('../dialog/stage');
 var Search 			= 			require('../dialog/search');
+var Service 		= 			require('../dialog/service_provider');
 // =======================
 
 
@@ -37,7 +38,7 @@ bot.dialog('greet',Greet.Dialog);
 bot.dialog('artist',Artist.Dialog);
 bot.dialog('stage',Stage.Dialog);
 bot.dialog('search',Search.Dialog);
-
+bot.dialog('service',Service.Dialog);
 // =======================
 
 

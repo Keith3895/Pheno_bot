@@ -1,8 +1,8 @@
 var builder 		=		require('botbuilder');
 var User 			=		require('../models/user');
-var http = require('http');
+var http = require('https');
 var dataRecieved;
-http.get("http://festmamu-keithfranklin.c9users.io/artist/ar", function(res) {
+http.get("https://festmamu-keithfranklin.c9users.io/artist/ar", function(res) {
 	var body = ''; 
 	res.on('data', function(data){
 		body += data;
@@ -58,7 +58,7 @@ artist = {
 					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0]+'.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/artist/'+dataRecieved[i].Type.toLowerCase()+'/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/'+dataRecieved[i].Type.toLowerCase()+'/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);	

@@ -164,7 +164,12 @@ profile = {
 						session.userData.profile=true;
 					}
 				});	
-				builder.Prompts.choice(
+
+			}
+			// else{
+			// 	session.endDialog();
+			// }
+			builder.Prompts.choice(
 				session,
 
 				"Thank You."+session.userData.name+"\n are you A :",
@@ -173,17 +178,15 @@ profile = {
 		            maxRetries: 2,
 		            retryPrompt: 'Not a valid option'
 		        });
-			}
-			else{
-				session.endDialog();
-			}
 		},
 		function(session,results){
 			session.send("%s",results.response.entity);
 			if(results.response.entity == 'event service provider'){
-				session.send("we have not made it till here.");
+				// session.send("we have not made it till here.");
+				session.beginDialog('service');
 				session.endDialog();
 			}else{
+				
 				session.endDialog();
 			}
 
