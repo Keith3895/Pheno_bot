@@ -1,8 +1,8 @@
  var builder 		=		require('botbuilder');
 var User 			=		require('../models/user');
-var http = require('http');
+var http = require('https');
 var dataRecieved;
-http.get("http://festmamu-keithfranklin.c9users.io/stage/list", function(res) {
+http.get("https://festmamu-keithfranklin.c9users.io/stage/list", function(res) {
 	var body = ''; 
 	res.on('data', function(data){
 		body += data;
@@ -48,17 +48,19 @@ stage = {
 			for(i in dataRecieved){
 				if(regex.test(dataRecieved[i].Comp_Name)){
 					// if(returned[0].includes(dataRecieved[i].Type)){
+						session.sendTyping();
 						var msg = new builder.Message(session)
 		                    .attachments([ 
 		                    new builder.HeroCard(session)
 					        .title(dataRecieved[i].Comp_Name)
-					        .subtitle('located in :'+dataRecieved[i].Location.City+' \ncontact:'+dataRecieved[i].Location.Contact1 )
+					        .subtitle('located in :'+dataRecieved[i].Location.City)
+					        .subtitle('contact:'+dataRecieved[i].Location.Contact1)
 					        .text('cost: '+dataRecieved[i].cost.Cost)
 					        .images([
 					            builder.CardImage.create(session, 'http://www.queenshall.co.uk/userfiles/Stage%20Dimensions.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/Stage/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/Stage/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);		
@@ -77,6 +79,7 @@ stage = {
 			for(i in dataRecieved){
 				if(returned[1].includes(dataRecieved[i].Location.City))
 					if(returned[0].includes(dataRecieved[i].Comp_Name)){
+						session.sendTyping();
 						var msg = new builder.Message(session)
 		                    .attachments([ 
 		                    new builder.HeroCard(session)
@@ -87,7 +90,7 @@ stage = {
 					            builder.CardImage.create(session, 'http://www.queenshall.co.uk/userfiles/Stage%20Dimensions.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/Stage/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/Stage/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);			

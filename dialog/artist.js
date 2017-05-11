@@ -48,6 +48,7 @@ artist = {
 			for(i in dataRecieved){
 				if(regex.test(dataRecieved[i].StageName)){
 					// if(returned[0].includes(dataRecieved[i].Type)){
+						session.sendTyping();
 						var msg = new builder.Message(session)
 		                    .attachments([ 
 		                    new builder.HeroCard(session)
@@ -58,7 +59,7 @@ artist = {
 					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0]+'.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/'+dataRecieved[i].Type.toLowerCase()+'/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);	
@@ -77,6 +78,7 @@ artist = {
 			for(i in dataRecieved){
 				if(returned[1].includes(dataRecieved[i].StageName))
 					if(returned[0].includes(dataRecieved[i].Type)){
+						session.sendTyping();
 						var msg = new builder.Message(session)
 		                    .attachments([ 
 		                    new builder.HeroCard(session)
@@ -87,7 +89,7 @@ artist = {
 					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0]+'.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/artist/'+dataRecieved[i].Type.toLowerCase()+'/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);			

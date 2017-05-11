@@ -186,7 +186,7 @@ profile = {
 				session.beginDialog('service');
 				session.endDialog();
 			}else{
-				
+				session.send("You can ask anything regarding the services you need. ex.: \"show artists|give stage info\"");
 				session.endDialog();
 			}
 

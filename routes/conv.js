@@ -30,25 +30,37 @@ var Artist			= 			require('../dialog/artist');
 var Stage 			=			require('../dialog/stage');
 var Search 			= 			require('../dialog/search');
 var Service 		= 			require('../dialog/service_provider');
+var StageProvider 	=			require('../dialog/stage_provider');
+var ArtistProvider 	=			require('../dialog/artist_provider');
+var Help 			=			require('../dialog/help');
 // =======================
 
-
+bot.dialog('help',Help.Dialog);
 bot.dialog('profile',Profile.Dialog);
 bot.dialog('greet',Greet.Dialog);
 bot.dialog('artist',Artist.Dialog);
 bot.dialog('stage',Stage.Dialog);
 bot.dialog('search',Search.Dialog);
 bot.dialog('service',Service.Dialog);
+bot.dialog('stageProvider',StageProvider.Dialog);
+bot.dialog('artistProvider',ArtistProvider.Dialog);
 // =======================
 
 
 intents.onBegin(function(session){
 	session.beginDialog('greet',session.userData.greet);
-	session.send("You can ask anything regarding the services you need.");
 });
 intents.matches('Artist',Artist.Dialog);
 intents.matches('Search',Search.Dialog);
 intents.matches('Stage',Stage.Dialog);
+intents.matches('Help',Help.Dialog);
+intents.matches('Provider',Service.Dialog);
+intents.onDefault([function(session){
+	session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+	session.send("if you need help with something type \"help me with ...... \"");
+	session.send("if you are a service provider or an artist type \"i'm a service provider\" ");
+	session.send("You can ask anything regarding the services you need. ex.: \"show artists|give stage info\"");
+}]);
 
 
 

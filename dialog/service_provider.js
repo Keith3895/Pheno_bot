@@ -18,7 +18,7 @@ Service = {
 				// session.send("we have not made it till here.");
 				// session.endDialog();
 				session.send("%s",results.response.entity);
-				if(results.response.entity == 'Stage Provider')
+				if(results.response.entity != 'Artist')
 					session.beginDialog('stageProvider');
 				else
 					session.beginDialog('artistProvider');
