@@ -80,10 +80,8 @@ AristProvider = {
         ])
         .items([
             builder.ReceiptItem.create(session, data.views, 'Views')
-                .quantity(720)
                 .image(builder.CardImage.create(session, '	https://s3-us-west-2.amazonaws.com/festmamu/eye.png')),
             builder.ReceiptItem.create(session, data.Comments.length, 'Comments')
-                .quantity(720)
                 .image(builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/chat.png'))
         ])
         // .tax('$ 7.50')

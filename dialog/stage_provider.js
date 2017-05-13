@@ -31,6 +31,7 @@ StageProvider = {
 				builder.Prompts.text(session,"What is the user name you've used to signup on festmamu?");
 		},
 		function(session,args,next){
+			var found=false;
 			if(args.response){
 				session.send("looking for your profile on the festmamu database");
 				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
@@ -40,17 +41,29 @@ StageProvider = {
 						console.log(dataRecieved[i]);
 						card= createReceiptCard(session,dataRecieved[i]);
 						var msg = new builder.Message(session).addAttachment(card);
-						// session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+						session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 				        session.send(msg);
-
+				        found =true;
 					}
 				}
 			}
-			session.endDialog();
+			if(!found){
+				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+				session.send("I did not find your data on the festmamu database.");
+				card= createSigninCard(session);
+				var msg = new builder.Message(session).addAttachment(card);
+				session.send(msg);
+			}else
+				session.endDialog();
 		}
 		]
 	};
-
+	function createSigninCard(session) {
+		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+	    return new builder.SigninCard(session)
+	        .text('festmamu sign-up')
+	        .button('Sign-in', 'https://festmamu-keithfranklin.c9users.io/register');
+	}
 	function createReceiptCard(session,data) {
 		// session.sendTyping();session.sendTyping();
     return new builder.ReceiptCard(session)

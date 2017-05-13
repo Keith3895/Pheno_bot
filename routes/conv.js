@@ -57,9 +57,9 @@ intents.matches('Help',Help.Dialog);
 intents.matches('Provider',Service.Dialog);
 intents.onDefault([function(session){
 	session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
-	session.send("if you need help with something type \"help me with ...... \"");
-	session.send("if you are a service provider or an artist type \"i'm a service provider\" ");
-	session.send("You can ask anything regarding the services you need. ex.: \"show artists|give stage info\"");
+	session.send("if you need help with something type \" Help me with ...... \"");
+	session.send("if you are a service provider or an artist type \" I'm a service provider\" ");
+	session.send("You can ask anything regarding the services you need. ex.: \" Show artists|give stage info\"");
 }]);
 
 

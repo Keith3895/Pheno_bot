@@ -13,7 +13,7 @@ greet	=	{
 				}else if(hr>=12 && hr < 17){
 					session.send('Good Afternoon!');
 				}else if (hr>= 17 && hr <21 ) {
-					session.send('good evening!');
+					session.send('Good Evening!');
 				}else{
 					session.send('Hi, at this late hour. good evening I suppose.');
 				}
@@ -25,7 +25,7 @@ greet	=	{
 		function(session,args,next){
 			if(!session.userData.greet){
 				session.send("I am Pheno.");
-				session.send("I'm Created to help you with various aspects of hosting your event.");
+				session.send("I'm created to help you with various aspects of hosting your event.");
 			}
 			next();
 		},

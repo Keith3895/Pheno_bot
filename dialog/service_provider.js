@@ -22,6 +22,7 @@ Service = {
 					session.beginDialog('stageProvider');
 				else
 					session.beginDialog('artistProvider');
+				
 			}
 		}
 		]

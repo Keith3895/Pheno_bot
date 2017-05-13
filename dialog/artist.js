@@ -56,7 +56,7 @@ artist = {
 					        .subtitle(dataRecieved[i].TagLine)
 					        .text('cost per hour: '+dataRecieved[i].price_per_hour)
 					        .images([
-					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0]+'.jpg')
+					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0])
 					        ])
 					        .buttons([
 					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+dataRecieved[i]._id, 'go to page')
@@ -86,7 +86,7 @@ artist = {
 					        .subtitle(dataRecieved[i].TagLine)
 					        .text('cost per hour: '+dataRecieved[i].price_per_hour)
 					        .images([
-					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0]+'.jpg')
+					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0])
 					        ])
 					        .buttons([
 					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+dataRecieved[i]._id, 'go to page')

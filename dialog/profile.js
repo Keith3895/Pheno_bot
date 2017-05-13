@@ -11,6 +11,15 @@ var numExtract  =  function(str){
 	}
 	return str1;
 };
+function validateEmail(x) {
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+        return false;
+    }
+    else
+    	return true;
+}
 profile = {
 	Label	: 	'Profile',
 	Dialog	: 	[
@@ -94,7 +103,7 @@ profile = {
 		},
 		function(session,args,next){
 			if (!session.userData.phone) {
-				builder.Prompts.text(session,"If you dont mind, may I have your phone number to contact you with updates?");
+				builder.Prompts.text(session,"Please enter your phone number:");
 			}
 			else
 				next();
@@ -102,15 +111,18 @@ profile = {
 		function(session,args,next){
 			if (args.response) {
 				res = args.response;	
-				if(res.match(/[0-9]+/)){
-					session.userData.phone=numExtract(res);
-					next();
-				}else if(res.match(/(no|nope)/)){
+				if(res.match(/(no|nope)/)){
 					session.send("I'll take that as a no..That's alright.");
 					session.userData.phone="0";
 					next();
 				}else if(res.match(/(yes|ya|sure|yup)/)){
 					builder.Prompts.text(session,"Thanks and your number is?");	
+				}else if(res.match(/[a-z]+/)){
+					session.send('you\'ve entered alphabets not only numbers');
+					session.cancelDialog(0,'profile',session.userData);
+				}else{
+					session.userData.phone=res;
+					next();
 				}
 			}
 			else
@@ -122,7 +134,7 @@ profile = {
 				session.userData.phone=args.response;
 			}
 			if (!session.userData.age) {
-				builder.Prompts.text(session,"age?");
+				builder.Prompts.text(session,"Age?");
 			}
 			else{
 				next();
@@ -138,9 +150,15 @@ profile = {
 				next();
 		},
 		function(session,args,next){
-			if(args.response){
-				session.userData.email = args.response;
-			}
+				if(args.response){
+					if(validateEmail(args.response)){
+						session.userData.email = args.response;
+					}
+					else{
+						session.send('you have entered the wrong format for a email address.');
+						session.cancelDialog(0,'profile',session.userData);
+					}
+				}
 			next();
 		},
 		function(session,results){
@@ -172,8 +190,8 @@ profile = {
 			builder.Prompts.choice(
 				session,
 
-				"Thank You."+session.userData.name+"\n are you A :",
-				["event service provider","event planner"],
+				"Thank You, "+session.userData.name+"\n. Are you a :",
+				["Event Service Provider","Event Planner"],
 		        {
 		            maxRetries: 2,
 		            retryPrompt: 'Not a valid option'
@@ -181,12 +199,12 @@ profile = {
 		},
 		function(session,results){
 			session.send("%s",results.response.entity);
-			if(results.response.entity == 'event service provider'){
+			if(results.response.entity == 'Event Service Provider'){
 				// session.send("we have not made it till here.");
 				session.beginDialog('service');
 				session.endDialog();
 			}else{
-				session.send("You can ask anything regarding the services you need. ex.: \"show artists|give stage info\"");
+				session.send("You can ask anything regarding the services you need. ex.: \"Show artists|Give stage info\"");
 				session.endDialog();
 			}
 
