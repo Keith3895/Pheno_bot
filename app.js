@@ -14,7 +14,7 @@ app.get('/',function(req,res){
 	res.send("hi");
 });
 
-  app.listen(process.env.port || process.env.PORT ||3978, function () {
+  app.listen(process.env.port || process.env.PORT, function () {
    console.log('server started');
    console.log(process.env.PORT) ;
 });
