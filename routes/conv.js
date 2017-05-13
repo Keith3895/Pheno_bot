@@ -3,16 +3,16 @@ var router          =           express.Router();
 var builder         =           require('botbuilder');
 var mongoose 		= 			require('mongoose');
 var User 			= 			require('../models/user');
-
+require('dotenv').config();
 //=========================================================
 // Bot Setup
 //=========================================================
 var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID|| 'cf79fde4-0886-4a5f-9388-5afbeb608ede',
-    appPassword: process.env.MICROSOFT_APP_PASSWORD || 'AoRqywNmbqMMvKPM5GxphYG'
+    appId: process.env.MICROSOFT_APP_ID, //|| 'cf79fde4-0886-4a5f-9388-5afbeb608ede',
+    appPassword: process.env.MICROSOFT_APP_PASSWORD //|| 'AoRqywNmbqMMvKPM5GxphYG'
  });
 var bot = new builder.UniversalBot(connector);
-var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key=ed2d37b304e948ca97cdcb590a71d2e1&timezoneOffset=0&verbose=true&q=';
+var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key='+process.env.subscription_key+'&timezoneOffset=0&verbose=true&q=';
 var recognizer = new builder.LuisRecognizer(model);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', intents);

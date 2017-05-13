@@ -53,6 +53,7 @@ StageProvider = {
 				card= createSigninCard(session);
 				var msg = new builder.Message(session).addAttachment(card);
 				session.send(msg);
+				session.endDialog();
 			}else
 				session.endDialog();
 		}
