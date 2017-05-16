@@ -59,7 +59,7 @@ artist = {
 					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0])
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);	
@@ -89,7 +89,7 @@ artist = {
 					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecieved[i].image_link.split(',')[0])
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);			

@@ -60,7 +60,7 @@ stage = {
 					            builder.CardImage.create(session, 'http://www.queenshall.co.uk/userfiles/Stage%20Dimensions.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/Stage/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);		
@@ -90,7 +90,7 @@ stage = {
 					            builder.CardImage.create(session, 'http://www.queenshall.co.uk/userfiles/Stage%20Dimensions.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/Stage/'+dataRecieved[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+dataRecieved[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);			

@@ -63,7 +63,7 @@ StageProvider = {
 		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 	    return new builder.SigninCard(session)
 	        .text('festmamu sign-up')
-	        .button('Sign-in', 'https://festmamu-keithfranklin.c9users.io/register');
+	        .button('Sign-in', 'http://www.festmamu.tk/stage/register');
 	}
 	function createReceiptCard(session,data) {
 		// session.sendTyping();session.sendTyping();
@@ -84,7 +84,7 @@ StageProvider = {
         // .tax('$ 7.50')
         // .total('$ 90.95')
         .buttons([
-            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/stage/'+data.author.id+'/mylistings', 'More Information')
+            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+data.author.id+'/mylistings', 'More Information')
         ]);
 }
 

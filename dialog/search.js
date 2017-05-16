@@ -17,7 +17,7 @@ http.get("http://www.festmamu.tk/stage/list", function(res) {
 .on('error', function(e) {
 	console.log("Got error: " + e.message);
 });
-http.get("http://festmamu-keithfranklin.c9users.io/artist/ar", function(res) {
+http.get("http://www.festmamu.tk/artist/ar", function(res) {
 	var body = ''; 
 	res.on('data', function(data){
 		body += data;
@@ -63,7 +63,7 @@ var search = {
 					            builder.CardImage.create(session, 'http://www.queenshall.co.uk/userfiles/Stage%20Dimensions.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/Stage/'+dataRecievedStage[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+dataRecievedStage[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);		
@@ -100,7 +100,7 @@ var search = {
 					            builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/'+dataRecievedArtist[i].image_link.split(',')[0]+'.jpg')
 					        ])
 					        .buttons([
-					            builder.CardAction.openUrl(session, 'http://festmamu-keithfranklin.c9users.io/artist/'+dataRecievedArtist[i].Type.toLowerCase()+'/'+dataRecievedArtist[i]._id, 'go to page')
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/'+dataRecievedArtist[i].Type.toLowerCase()+'/'+dataRecievedArtist[i]._id, 'go to page')
 					        ])
 		                ]);
 				        session.send(msg);	

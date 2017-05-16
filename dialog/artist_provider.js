@@ -87,7 +87,7 @@ AristProvider = {
         // .tax('$ 7.50')
         // .total('$ 90.95')
         .buttons([
-            builder.CardAction.openUrl(session, 'https://festmamu-keithfranklin.c9users.io/artist/test/'+data._id, 'More Information')
+            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+data._id, 'More Information')
         ]);
 }
 
