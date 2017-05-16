@@ -65,6 +65,7 @@ var search = {
 					        .buttons([
 					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+dataRecievedStage[i]._id, 'go to page')
 					        ])
+					        .tap(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+dataRecievedStage[i]._id, 'go to page'))
 		                ]);
 				        session.send(msg);		
 				        find=true;
@@ -102,6 +103,7 @@ var search = {
 					        .buttons([
 					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/'+dataRecievedArtist[i].Type.toLowerCase()+'/'+dataRecievedArtist[i]._id, 'go to page')
 					        ])
+					        .tap(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/'+dataRecievedArtist[i].Type.toLowerCase()+'/'+dataRecievedArtist[i]._id, 'go to page'))
 		                ]);
 				        session.send(msg);	
 				        find=true;

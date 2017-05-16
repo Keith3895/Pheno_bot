@@ -61,6 +61,7 @@ artist = {
 					        .buttons([
 					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page')
 					        ])
+					        .tap(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page'))
 		                ]);
 				        session.send(msg);	
 				        find=true;
@@ -91,6 +92,7 @@ artist = {
 					        .buttons([
 					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page')
 					        ])
+					        .tap(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page'))
 		                ]);
 				        session.send(msg);			
 				    }
