@@ -2,7 +2,7 @@ var builder 		=		require('botbuilder');
 var User 			=		require('../models/user');
 var http = require('http');
 var dataRecievedStage,dataRecievedArtist;
-http.get("http://festmamu-keithfranklin.c9users.io/stage/list", function(res) {
+http.get("http://www.festmamu.tk/stage/list", function(res) {
 	var body = ''; 
 	res.on('data', function(data){
 		body += data;

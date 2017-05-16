@@ -1,8 +1,8 @@
  var builder 		=		require('botbuilder');
 var User 			=		require('../models/user');
-var http = require('https');
+var http = require('http');
 var dataRecieved;
-http.get("https://festmamu-keithfranklin.c9users.io/stage/list", function(res) {
+http.get("http://www.festmamu.tk/stage/list", function(res) {
 	var body = ''; 
 	res.on('data', function(data){
 		body += data;
