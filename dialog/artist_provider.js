@@ -51,6 +51,7 @@ AristProvider = {
 			
 		// },
 		function(session,args,next){
+			var found=false;
 			if(args.response){
 				session.send("looking for your profile on the festmamu database");
 				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
@@ -58,13 +59,22 @@ AristProvider = {
 				for(i in dataRecieved){
 					if(regex.test(dataRecieved[i].StageName)){
 						console.log(dataRecieved[i]);
-						card= createReceiptCard(session,dataRecieved[i]);
+						card= createHeroCard(session,dataRecieved[i]);
 						var msg = new builder.Message(session).addAttachment(card);
 				        session.send(msg);
+				        found=true;
 					}
 				}
 			}
-			session.endDialog();
+			if(!found){
+				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+				session.send("I did not find your data on the festmamu database.");
+				card= createSigninCard(session);
+				var msg = new builder.Message(session).addAttachment(card);
+				session.send(msg);
+				session.endDialog();
+			}else
+				session.endDialog();
 		}
 		]
 	};
@@ -89,6 +99,17 @@ AristProvider = {
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+data._id, 'More Information')
         ]);
+}
+
+function createHeroCard(session,data){
+	return new builder.HeroCard(session)
+					        .title(data.Aname)
+					        .subtitle('Category: '+data.Type)
+					        .text('cost:'+data.price_per_hour+'\n  Views:'+data.views+
+					        	'\n  Comments:'+data.Comments.length)
+					        .buttons([
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+data._id, 'More Information')
+					        ]);
 }
 
 module.exports = AristProvider;

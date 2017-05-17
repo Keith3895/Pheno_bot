@@ -39,7 +39,7 @@ StageProvider = {
 				for(i in dataRecieved){
 					if(regex.test(dataRecieved[i].author.username)){
 						console.log(dataRecieved[i]);
-						card= createReceiptCard(session,dataRecieved[i]);
+						card= createHeroCard(session,dataRecieved[i]);
 						var msg = new builder.Message(session).addAttachment(card);
 						session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 				        session.send(msg);
@@ -65,7 +65,7 @@ StageProvider = {
 	        .text('festmamu sign-up')
 	        .button('Sign-in', 'http://www.festmamu.tk/stage/register');
 	}
-	function createReceiptCard(session,data) {
+	function createCard(session,data) {
 		// session.sendTyping();session.sendTyping();
     return new builder.ReceiptCard(session)
         .title(data.Comp_Name)
@@ -86,6 +86,17 @@ StageProvider = {
         .buttons([
             builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+data.author.id+'/mylistings', 'More Information')
         ]);
+}
+
+function createHeroCard(session,data){
+	return new builder.HeroCard(session)
+					        .title(data.Comp_Name)
+					        .subtitle('located in :'+data.Location.City+' \ncontact:'+data.Location.Contact1 )
+					        .text('cost:'+data.cost.Cost+'\n  Views:'+data.views+
+					        	'\n  Comments:'+data.Comments.length)
+					        .buttons([
+					            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+data.author.id+'/mylistings', 'More Information')
+					        ]);
 }
 
 module.exports = StageProvider;
