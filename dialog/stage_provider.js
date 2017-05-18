@@ -61,9 +61,10 @@ StageProvider = {
 	};
 	function createSigninCard(session) {
 		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
-	    return new builder.SigninCard(session)
-	        .text(' We are glad to have a provider. you can provide services only on sign up. Would you like to?  festmamu sign-up')
-	        .button('Sign-in', 'http://www.festmamu.tk/stage/register');
+	    return new builder.HeroCard(session)
+	        title("error")
+	        .text(' We are glad to have a provider. You can provide services only on sign up. Would you like to?')
+	        .button(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/register', 'Sign-Up'));
 	}
 	
 function createHeroCard(session,data){

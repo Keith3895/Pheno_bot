@@ -48,7 +48,6 @@ AristProvider = {
 			if(!found){
 				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 				session.send("I did not find your data on the festmamu database.");
-				 We are glad to have a provider. you can provide services only on sign up. Would you like to?
 				card= createSigninCard(session);
 				var msg = new builder.Message(session).addAttachment(card);
 				session.send(msg);
@@ -62,8 +61,9 @@ AristProvider = {
 	function createSigninCard(session) {
 		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 	    return new builder.HeroCard(session)
-	        .text(' We are glad to have a provider. you can provide services only on sign up. Would you like to?  festmamu sign-up')
-	        .button('Sign-in', 'http://www.festmamu.tk/stage/register');
+	        title("error")
+	        .text(' We are glad to have a provider. You can provide services only on sign up. Would you like to?')
+	        .button(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/register', 'Sign-Up'));
 	}
 function createHeroCard(session,data){
 	return new builder.HeroCard(session)

@@ -20,6 +20,16 @@ function validateEmail(x) {
     else
     	return true;
 }
+function validateEntry(x,session){
+	if(/(what|why|how|where)/i.test(x) || /(no|not)/i.test(x) || /(relevant|necessary|need|avoid)/i.test(x)){
+		session.send("I will be using your information to make a better system.");
+		session.send("Your information is protected.");
+		session.send("I request you to help me help you.");
+		console.log("inside the if!!!!!!");
+		return true;
+	}else return false;
+	
+}
 profile = {
 	Label	: 	'Profile',
 	Dialog	: 	[
@@ -34,7 +44,6 @@ profile = {
 		function(session,args,next){
 			if(!session.userData.name){
 				session.send("Before we start...");
-				// session.send('So let us get to know each other before starting');
 				builder.Prompts.text(session,'What is your name?');
 			}
 			else{
@@ -49,7 +58,12 @@ profile = {
 					var match = /my name is/i.exec(args.response);
 					args.response = args.response.substring(match[0].length,args.response.length);
 				}
-				session.userData.name= args.response;
+				delete session.userData.name;
+				if(validateEntry(args.response,session)){
+					session.cancelDialog(0,'profile',session.userData);
+				}else
+					session.userData.name= args.response;
+				console.log(args.response);
 				if(!session.userData.dbLook)	
 				{
 					User.findOne({'name':session.userData.name},function(err,Data){
@@ -92,10 +106,10 @@ profile = {
 					session.send('ok');
 					next();
 				}else if(args.response.entity == 'no'){
-					delete session.userData.name;
+					// delete session.userData.name;
 					session.userData.dbLook=true;
 					session.send("oh sorry..");
-					session.cancelDialog(0,'profile',session.userData.name);
+					session.cancelDialog(0,'profile',session.userData);
 				}
 			}else{
 				next();
@@ -110,29 +124,24 @@ profile = {
 		},
 		function(session,args,next){
 			if (args.response) {
-				res = args.response;	
-				if(res.match(/(no|nope)/)){
-					session.send("I'll take that as a no..That's alright.");
-					session.userData.phone="0";
-					next();
-				}else if(res.match(/(yes|ya|sure|yup)/)){
-					builder.Prompts.text(session,"Thanks and your number is?");	
-				}else if(res.match(/[a-z]+/)){
-					session.send('you\'ve entered alphabets not only numbers');
+				delete res;
+				if(validateEntry(args.response,session)){
 					session.cancelDialog(0,'profile',session.userData);
-				}else{
-					session.userData.phone=res;
-					next();
 				}
+				res = args.response;	
+				
+				if(/\d{10}/g.test(res)){
+					session.userData.phone=res;
+				}else{
+					session.send("the number you've entered is not a valid number..");
+					session.cancelDialog(0,'profile',session.userData);
+				}
+				next();
 			}
 			else
 				next();
 		},
 		function(session,args,next){
-			if(args.response){
-				console.log("here");
-				session.userData.phone=args.response;
-			}
 			if (!session.userData.age) {
 				builder.Prompts.text(session,"Age?");
 			}
@@ -142,7 +151,15 @@ profile = {
 		},
 		function(session,args,next){
 			if (args.response) {
-				session.userData.age = args.response;
+				if(validateEntry(args.response,session))
+					session.cancelDialog(0,'profile',session.userData);
+				if(/[0-9]/.test(args.response) && args.response > 6)
+				{
+					session.userData.age = args.response;	
+				}else{
+					session.send("you've entered a questionable age...");
+					session.cancelDialog(0,'profile',session.userData);
+				}
 			}
 			if(!session.userData.email){
 				builder.Prompts.text(session,"What is your email address?");
@@ -194,7 +211,7 @@ profile = {
 				["Event Service Provider","Event Planner"],
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid option'
+		            retryPrompt: 'Not a valid input. Event Service Provider: For supplying required facilities like Artists or resources like Stages. Event Planner: Hosts looking for Artists or Stage for thier events.'
 		        });
 		},
 		function(session,results){
