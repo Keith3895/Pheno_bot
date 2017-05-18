@@ -78,7 +78,7 @@ profile = {
 								session.send(Data.email);
 								session.send("phone: %s",Data.phone);
 								// builder.Prompts.text(session,"yes?");
-								builder.Prompts.choice(session,"so?",
+								builder.Prompts.choice(session,"",
 								["yes","no"],
 						        {
 						            maxRetries: 3,
@@ -204,14 +204,15 @@ profile = {
 			// else{
 			// 	session.endDialog();
 			// }
+			session.send("Okay, thank you, "+session.userData.name+"!");
 			builder.Prompts.choice(
 				session,
 
-				"Thank You, "+session.userData.name+"\n. Are you a :",
+				"Are you a :",
 				["Event Service Provider","Event Planner"],
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid input. Event Service Provider: For supplying required facilities like Artists or resources like Stages. Event Planner: Hosts looking for Artists or Stage for thier events.'
+		            retryPrompt: 'Not a valid input. Event Service Provider: \'For supplying required facilities like Artists or resources like Stages.\' Event Planner: \'Hosts looking for Artists or Stage for thier events.\''
 		        });
 		},
 		function(session,results){
@@ -221,7 +222,7 @@ profile = {
 				session.beginDialog('service');
 				session.endDialog();
 			}else{
-				session.send("You can ask anything regarding the services you need. ex.: \"Show artists|Give stage info\"");
+				session.send(session.userData.name+",you can ask anything regarding the services you need. ex.: \"Show artists|Give stage info\"");
 				session.endDialog();
 			}
 

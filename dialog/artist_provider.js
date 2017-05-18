@@ -59,9 +59,10 @@ AristProvider = {
 	function createSigninCard(session) {
 		session.sendTyping();
 	    return new builder.HeroCard(session)
-	        title("error")
-	        .text(' We are glad to have a provider. You can provide services only on sign up. Would you like to?')
-	        .button(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/register', 'Sign-Up'));
+	        .title("error")
+	        .subtitle(' We are glad to have a provider. You can provide services only on sign up.')
+	        .text('Would you like to Sign-Up?')
+	        .buttons([builder.CardAction.openUrl(session, 'http://www.festmamu.tk/register', 'Sign-Up')]);
 	}
 function createHeroCard(session,data){
 	return new builder.HeroCard(session)
