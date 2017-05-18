@@ -33,7 +33,7 @@ artist = {
 	    	builder.Prompts.choice(session,"For more information on artist type their serial number.",list,
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid option'
+		            retryPrompt: 'Not a valid option. Choose from the list provided...'
 		        });
 	        // builder.Prompts.text(session, "What can I help you find?");
 	    } else {

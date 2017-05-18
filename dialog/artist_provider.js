@@ -29,27 +29,6 @@ AristProvider = {
 				builder.Prompts.text(session,"What is the Stage Name you've used while signup on festmamu?");			
 				
 		},
-		// function(session,args,next){
-		// 	notfound=true;
-		// 	if(args.response){
-		// 		var regex = new RegExp(args.response,"i");
-		// 		for(i in dataRecieved){
-		// 			if(regex.test(dataRecieved[i].author.username)){
-		// 				notfound=false;
-		// 				break;
-		// 			}
-		// 		}
-		// 	}
-		// 	if(notfound){
-		// 		session.send("username not found");
-		// 		session.endDialog();
-		// 	}
-		// 	else
-		// 	{
-		// 		builder.Prompts.text(session,"What is the Stage Name you've used while signup on festmamu?");			
-		// 	}
-			
-		// },
 		function(session,args,next){
 			var found=false;
 			if(args.response){
@@ -69,6 +48,7 @@ AristProvider = {
 			if(!found){
 				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 				session.send("I did not find your data on the festmamu database.");
+				 We are glad to have a provider. you can provide services only on sign up. Would you like to?
 				card= createSigninCard(session);
 				var msg = new builder.Message(session).addAttachment(card);
 				session.send(msg);
@@ -79,28 +59,12 @@ AristProvider = {
 		]
 	};
 
-	function createReceiptCard(session,data) {
-		// session.sendTyping();session.sendTyping();
-    return new builder.ReceiptCard(session)
-        .title(data.StageName)
-        .facts([
-        	builder.Fact.create(session, data.Aname, 'Name'),
-            builder.Fact.create(session, data.Type, 'Type:'),
-            builder.Fact.create(session, data.price_per_hour, 'Cost')
-        ])
-        .items([
-            builder.ReceiptItem.create(session, data.views, 'Views')
-                .image(builder.CardImage.create(session, '	https://s3-us-west-2.amazonaws.com/festmamu/eye.png')),
-            builder.ReceiptItem.create(session, data.Comments.length, 'Comments')
-                .image(builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/chat.png'))
-        ])
-        // .tax('$ 7.50')
-        // .total('$ 90.95')
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+data._id, 'More Information')
-        ]);
-}
-
+	function createSigninCard(session) {
+		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+	    return new builder.HeroCard(session)
+	        .text(' We are glad to have a provider. you can provide services only on sign up. Would you like to?  festmamu sign-up')
+	        .button('Sign-in', 'http://www.festmamu.tk/stage/register');
+	}
 function createHeroCard(session,data){
 	return new builder.HeroCard(session)
 					        .title(data.Aname)

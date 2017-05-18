@@ -62,32 +62,10 @@ StageProvider = {
 	function createSigninCard(session) {
 		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 	    return new builder.SigninCard(session)
-	        .text('festmamu sign-up')
+	        .text(' We are glad to have a provider. you can provide services only on sign up. Would you like to?  festmamu sign-up')
 	        .button('Sign-in', 'http://www.festmamu.tk/stage/register');
 	}
-	function createCard(session,data) {
-		// session.sendTyping();session.sendTyping();
-    return new builder.ReceiptCard(session)
-        .title(data.Comp_Name)
-        .facts([
-            builder.Fact.create(session, data.Location.City, 'City:'),
-            builder.Fact.create(session, data.cost.Cost, 'Cost')
-        ])
-        .items([
-            builder.ReceiptItem.create(session, data.views, 'Views')
-                .quantity(720)
-                .image(builder.CardImage.create(session, '	https://s3-us-west-2.amazonaws.com/festmamu/eye.png')),
-            builder.ReceiptItem.create(session, data.Comments.length, 'Comments')
-                .quantity(720)
-                .image(builder.CardImage.create(session, 'https://s3-us-west-2.amazonaws.com/festmamu/chat.png'))
-        ])
-        // .tax('$ 7.50')
-        // .total('$ 90.95')
-        .buttons([
-            builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+data.author.id+'/mylistings', 'More Information')
-        ]);
-}
-
+	
 function createHeroCard(session,data){
 	return new builder.HeroCard(session)
 					        .title(data.Comp_Name)

@@ -15,8 +15,6 @@ Service = {
 		},
 		function(session,results){
 			if(results.response.entity){
-				// session.send("we have not made it till here.");
-				// session.endDialog();
 				session.send("%s",results.response.entity);
 				if(results.response.entity != 'Artist')
 					session.beginDialog('stageProvider');

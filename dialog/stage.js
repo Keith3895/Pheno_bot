@@ -33,7 +33,7 @@ stage = {
 	    	builder.Prompts.choice(session,"For more information on Stage type their serial number.\n",list,
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid option'
+		            retryPrompt: 'Not a valid option. Choose from the list provided...'
 		        });
 	        // builder.Prompts.text(session, "What can I help you find?");
 	    } else {
@@ -65,7 +65,7 @@ stage = {
 					        .tap(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/stage/'+dataRecieved[i]._id, 'go to page'))
 
 		                ]);
-				        session.send(msg);		
+				        session.send(msg);
 				        find=true;
 				        break;		
 				    }
