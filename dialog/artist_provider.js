@@ -23,9 +23,8 @@ AristProvider = {
 	Label	: 	'AristProvider',
 	Dialog	: 	[
 		function(session,args,next){
-			session.sendTyping();session.sendTyping();session.sendTyping();
+			session.sendTyping();
 				session.send("you have to answer some questions before we can show you your data...");
-				session.sendTyping();
 				builder.Prompts.text(session,"What is the Stage Name you've used while signup on festmamu?");			
 				
 		},
@@ -33,7 +32,7 @@ AristProvider = {
 			var found=false;
 			if(args.response){
 				session.send("looking for your profile on the festmamu database");
-				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+				session.sendTyping();
 				var regex = new RegExp(args.response,"i");
 				for(i in dataRecieved){
 					if(regex.test(dataRecieved[i].StageName)){
@@ -46,7 +45,6 @@ AristProvider = {
 				}
 			}
 			if(!found){
-				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 				session.send("I did not find your data on the festmamu database.");
 				card= createSigninCard(session);
 				var msg = new builder.Message(session).addAttachment(card);
@@ -59,7 +57,7 @@ AristProvider = {
 	};
 
 	function createSigninCard(session) {
-		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+		session.sendTyping();
 	    return new builder.HeroCard(session)
 	        title("error")
 	        .text(' We are glad to have a provider. You can provide services only on sign up. Would you like to?')

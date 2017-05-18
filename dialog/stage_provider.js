@@ -25,30 +25,29 @@ StageProvider = {
 	Label	: 	'StageProvider',
 	Dialog	: 	[
 		function(session,args,next){
-			session.sendTyping();session.sendTyping();session.sendTyping();
+			session.sendTyping();
 				session.send("you have to answer some questions before we can show you your data...");
-				session.sendTyping();
 				builder.Prompts.text(session,"What is the user name you've used to signup on festmamu?");
 		},
 		function(session,args,next){
 			var found=false;
 			if(args.response){
 				session.send("looking for your profile on the festmamu database");
-				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+				session.sendTyping();
 				var regex = new RegExp(args.response,"i");
 				for(i in dataRecieved){
 					if(regex.test(dataRecieved[i].author.username)){
 						console.log(dataRecieved[i]);
 						card= createHeroCard(session,dataRecieved[i]);
 						var msg = new builder.Message(session).addAttachment(card);
-						session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+						session.sendTyping();
 				        session.send(msg);
 				        found =true;
 					}
 				}
 			}
 			if(!found){
-				session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+				session.sendTyping();
 				session.send("I did not find your data on the festmamu database.");
 				card= createSigninCard(session);
 				var msg = new builder.Message(session).addAttachment(card);
@@ -60,7 +59,6 @@ StageProvider = {
 		]
 	};
 	function createSigninCard(session) {
-		session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
 	    return new builder.HeroCard(session)
 	        title("error")
 	        .text(' We are glad to have a provider. You can provide services only on sign up. Would you like to?')

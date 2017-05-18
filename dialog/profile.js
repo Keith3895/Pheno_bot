@@ -133,7 +133,7 @@ profile = {
 				if(/\d{10}/g.test(res)){
 					session.userData.phone=res;
 				}else{
-					session.send("the number you've entered is not a valid number..");
+					session.send("Enter a valid number(10 digits)....");
 					session.cancelDialog(0,'profile',session.userData);
 				}
 				next();
