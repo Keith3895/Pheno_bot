@@ -78,7 +78,7 @@ profile = {
 								session.send(Data.email);
 								session.send("phone: %s",Data.phone);
 								// builder.Prompts.text(session,"yes?");
-								builder.Prompts.choice(session,"",
+								builder.Prompts.choice(session,"...",
 								["yes","no"],
 						        {
 						            maxRetries: 3,
