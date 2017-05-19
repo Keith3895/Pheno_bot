@@ -21,7 +21,7 @@ function validateEmail(x) {
     	return true;
 }
 function validateEntry(x,session){
-	if(/(what|why|how|where)/i.test(x) || /(no|not)/i.test(x) || /(relevant|necessary|need|avoid)/i.test(x)){
+	if(/(what|why|how|where)/i.test(x) || /(don't|dont|no|not)/i.test(x) || /(relevant|necessary|need|avoid)/i.test(x)){
 		session.send("I will be using your information to make a better system.");
 		session.send("Your information is protected.");
 		session.send("I request you to help me help you.");
