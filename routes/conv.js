@@ -56,7 +56,7 @@ intents.matches('Search',Search.Dialog);
 intents.matches('Stage',Stage.Dialog);
 intents.matches('Help',Help.Dialog);
 intents.matches('Provider',Service.Dialog);
-intents.matches('Reality',Turing.Reality);
+intents.matches('Reality',Turing.Real);
 intents.matches('Name',Turing.Name);
 intents.matches('Age',Turing.Age);
 intents.matches('Location',Turing.Location);
