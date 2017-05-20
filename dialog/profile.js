@@ -143,7 +143,7 @@ profile = {
 		},
 		function(session,args,next){
 			if (!session.userData.age) {
-				builder.Prompts.text(session,"Age?");
+				builder.Prompts.text(session,"Age in numerals?");
 			}
 			else{
 				next();
@@ -212,7 +212,7 @@ profile = {
 				["Event Service Provider","Event Planner"],
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid input. Event Service Provider: \'For supplying required facilities like Artists or resources like Stages.\' Event Planner: \'Hosts looking for Artists or Stage for thier events.\''
+		            retryPrompt: 'Not a valid input '+session.userData.name+'. Event Service Provider: For supplying required facilities like Artists or resources like Stages. Event Planner: Hosts looking for Artists or Stage for thier events.'
 		        });
 		},
 		function(session,results){

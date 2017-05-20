@@ -31,7 +31,7 @@ AristProvider = {
 		function(session,args,next){
 			var found=false;
 			if(args.response){
-				session.send("looking for your profile on the festmamu database");
+				session.send(session.userData.name+", I'm looking for your profile on the festmamu database with the name "+args.response);
 				session.sendTyping();
 				var regex = new RegExp(args.response,"i");
 				for(i in dataRecieved){
@@ -45,7 +45,7 @@ AristProvider = {
 				}
 			}
 			if(!found){
-				session.send("I did not find your data on the festmamu database.");
+				session.send("sorry "+session.userData.name+" I did not find your data on the festmamu database.");
 				card= createSigninCard(session);
 				var msg = new builder.Message(session).addAttachment(card);
 				session.send(msg);

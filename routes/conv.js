@@ -33,6 +33,7 @@ var Service 		= 			require('../dialog/service_provider');
 var StageProvider 	=			require('../dialog/stage_provider');
 var ArtistProvider 	=			require('../dialog/artist_provider');
 var Help 			=			require('../dialog/help');
+var Turing 			= 			require('../dialog/turing');
 // =======================
 
 bot.dialog('help',Help.Dialog);
@@ -55,8 +56,27 @@ intents.matches('Search',Search.Dialog);
 intents.matches('Stage',Stage.Dialog);
 intents.matches('Help',Help.Dialog);
 intents.matches('Provider',Service.Dialog);
+intents.matches('Reality',Turing.Reality);
+intents.matches('Name',Turing.Name);
+intents.matches('Age',Turing.Age);
+intents.matches('Location',Turing.Location);
+intents.matches('Language',Turing.Language);
+intents.matches('State',Turing.State);
+intents.matches('Hobby',Turing.Hobby);
+intents.matches('Appearance',Turing.Appearance);
+intents.matches(/truth and consequences/i,[
+	function(session){
+		session.send("truth and consequences activated!");
+		delete session.userData.name;
+		delete session.userData.age;
+		delete session.userData.phone;
+		delete session.userData.email;
+		delete session.userData.greet;
+		delete session.userData.profile;
+		session.beginDialog('greet',session.userData.greet);
+	}]);
 intents.onDefault([function(session){
-	session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();session.sendTyping();
+	session.sendTyping();
 	session.send("if you need help with something type \" Help me with ...... \"");
 	session.send("if you are a service provider or an artist type \" I'm a service provider\" ");
 	session.send("You can ask anything regarding the services you need. ex.: \" Show artists|give stage info\"");

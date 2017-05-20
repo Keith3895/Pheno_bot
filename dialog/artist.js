@@ -33,7 +33,7 @@ artist = {
 	    	builder.Prompts.choice(session,"For more information on artist type their serial number.",list,
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid option. Choose from the list provided...'
+		            retryPrompt: 'Not a valid option '+session.userData.name+'. Choose from the list provided...'
 		        });
 	        // builder.Prompts.text(session, "What can I help you find?");
 	    } else {
@@ -63,6 +63,7 @@ artist = {
 					        ])
 					        .tap(builder.CardAction.openUrl(session, 'http://www.festmamu.tk/artist/test/'+dataRecieved[i]._id, 'go to page'))
 		                ]);
+		                session.send("here is what you requested for "+session.userData.name)
 				        session.send(msg);	
 				        find=true;
 				        break;		
@@ -71,8 +72,10 @@ artist = {
 					find = false;
 				}
 			}
-			if(!find)
-					session.send("coundn't find the artist you're looking for.");	
+			if(!find){
+				session.send("coundn't find the artist you're looking for.");	
+			}
+					
 		}else if(args.response){
 			returned = args.response.entity;
 			returned = returned.split(':');

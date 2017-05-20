@@ -33,7 +33,7 @@ stage = {
 	    	builder.Prompts.choice(session,"For more information on Stage type their serial number.\n",list,
 		        {
 		            maxRetries: 2,
-		            retryPrompt: 'Not a valid option. Choose from the list provided...'
+		            retryPrompt: 'Not a valid option '+session.userData.name+'. Choose from the list provided...'
 		        });
 	        // builder.Prompts.text(session, "What can I help you find?");
 	    } else {

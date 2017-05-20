@@ -10,7 +10,7 @@ Service = {
 			["Stage Provider","Artist"],
 	        {
 	            maxRetries: 2,
-	            retryPrompt: 'Not a valid option'
+	            retryPrompt: 'Not a valid option '+session.userData.name+'.'
 	      	});
 		},
 		function(session,results){
