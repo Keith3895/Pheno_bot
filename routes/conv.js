@@ -12,7 +12,7 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD //|| 'AoRqywNmbqMMvKPM5GxphYG'
  });
 var bot = new builder.UniversalBot(connector);
-var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key='+process.env.subscription_key+'&timezoneOffset=0&verbose=true&q=';
+var model = 'https://southeastasia.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key='+process.env.subscription_key+'&timezoneOffset=0&verbose=true&q=';
 var recognizer = new builder.LuisRecognizer(model);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', intents);
