@@ -8,16 +8,14 @@ require('dotenv').config();
 mongoose.connect("mongodb://"+process.env.DB_Host+":"+process.env.DB_Password+"@ds141410.mlab.com:41410/keithtrials"); // public hosted mongo db
 
 // mongoose.connect("mongodb://localhost/pheno_bot");
-var converRoute = require("./routes/conv")
+var converRoute = require("./routes/conv");
  
- app.use("/api/messages",converRoute);
+app.use("/api/messages",converRoute);
 app.get('/',function(req,res){
 	res.send("hi");
 });
 
-  app.listen(process.env.port || process.env.PORT , function () {
-   console.log('server started');
-   console.log(process.env.PORT) ;
-   console.log(process.env.port) ;
-});
+  app.listen(process.env.port || process.env.PORT || 3978, function () {
+	console.log("started");  	
+  });
  

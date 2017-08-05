@@ -8,8 +8,8 @@ require('dotenv').config();
 // Bot Setup
 //=========================================================
 var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID, //|| 'cf79fde4-0886-4a5f-9388-5afbeb608ede',
-    appPassword: process.env.MICROSOFT_APP_PASSWORD //|| 'AoRqywNmbqMMvKPM5GxphYG'
+    appId: process.env.MICROSOFT_APP_ID, 
+    appPassword: process.env.MICROSOFT_APP_PASSWORD 
  });
 var bot = new builder.UniversalBot(connector);
 var model = 'https://southeastasia.api.cognitive.microsoft.com/luis/v2.0/apps/8d172975-6e46-47c8-ad38-4cd22c1cbb68?subscription-key='+process.env.subscription_key+'&timezoneOffset=0&verbose=true&q=';
@@ -51,6 +51,9 @@ bot.dialog('artistProvider',ArtistProvider.Dialog);
 intents.onBegin(function(session){
 	session.beginDialog('greet',session.userData.greet);
 });
+
+
+
 intents.matches('Artist',Artist.Dialog);
 intents.matches('Search',Search.Dialog);
 intents.matches('Stage',Stage.Dialog);
@@ -64,6 +67,9 @@ intents.matches('Language',Turing.Language);
 intents.matches('State',Turing.State);
 intents.matches('Hobby',Turing.Hobby);
 intents.matches('Appearance',Turing.Appearance);
+
+
+
 intents.matches(/truth and consequences/i,[
 	function(session){
 		session.send("truth and consequences activated!");

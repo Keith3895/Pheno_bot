@@ -7,19 +7,16 @@ greet	=	{
 	Label		: 		'Greet',
 	Dialog   	: 		[
 		function(session,args,next){
-			// if(!args || args == undefined){
+			// session.send("hi");
 				if(hr > 4 && hr<12){
-					session.send('Good morning!');
+					session.send('Good Morning!');
 				}else if(hr>=12 && hr < 17){
 					session.send('Good Afternoon!');
 				}else if (hr>= 17 && hr <21 ) {
 					session.send('Good Evening!');
 				}else{
-					session.send('Hi, at this late hour. good evening I suppose.');
+					session.send('Hi, At this late hour in the day Good Evening i guess.');
 				}
-				// next();
-			// }
-			// else
 				next();
 		},
 		function(session,args,next){
